@@ -10,20 +10,18 @@ library(rgdal)
 library(sp)
 ```
 
-## Читаем данные с термокарстом (которые до этого были преобразованы в Jupyter)
-
+# Read data with thermokarst (which was previously converted to Jupyter)
 ```{r}
 termokarst_occ <- read.csv('data/termo_points_2.csv')
 summary(termokarst_occ)
 ```
 
-## Создаем стак с нужными переменными
-
+# Create a stack with the necessary variables
 ```{r}
 WС_sub_1 <- 
   raster::stack(
     c(
-      bio_1 = 'data/worldclim/bio_2.5/rasters/clip_wc2.1_2.5m_bio_1.tif',,
+      bio_1 = 'data/worldclim/bio_2.5/rasters/clip_wc2.1_2.5m_bio_1.tif',
       bio_5 = 'data/worldclim/bio_2.5/rasters/clip_wc2.1_2.5m_bio_5.tif',
       bio_7 = 'data/worldclim/bio_2.5/rasters/clip_wc2.1_2.5m_bio_7.tif',
       bio_10 = 'data/worldclim/bio_2.5/rasters/clip_wc2.1_2.5m_bio_10.tif',
@@ -35,8 +33,7 @@ WС_sub_1 <-
 
 ```
 
-## Форматируем данные под модель: добавляем существующие пикселы с координатами, и рандомно добавляем отсутствующие
-
+## Formatting data for the model
 ```{r}
 termokarst_data <- 
   BIOMOD_FormatingData(
@@ -55,8 +52,7 @@ plot(termokarst_data)
 termokarst_data
 ```
 
-## Настройка индивидуальных параметров модели
-
+# Individual BIOMOD2 models settings
 ```{r}
 termo_opt <- 
   BIOMOD_ModelingOptions(
@@ -66,8 +62,7 @@ termo_opt <-
   )
 ```
 
-## Запускаем индивидуальные встроенные модели
-
+# Modelling
 ```{r}
 termo_models_1 <-  
   BIOMOD_Modeling(
@@ -81,7 +76,7 @@ termo_models_1 <-
   )
 ```
 
-## Загружаем оценки моделей
+## Load model's evaluations
 
 ```{r}
 termo_models_1_scores <- get_evaluations(termo_models_1)
@@ -94,8 +89,7 @@ dim(termo_models_1_scores)
 dimnames(termo_models_1_scores)
 ```
 
-## Рисуем оценки моделей
-
+## Model's graphs
 ```{r}
 models_scores_graph(
   termo_models_1, 
@@ -124,20 +118,17 @@ models_scores_graph(
 )
 ```
 
-##Важность переменных (!можно использовать все, что в открытом доступе, и доп оценить антроп)
-
+## Variables importance
 ```{r}
 (termo_models_1_var_import <- get_variables_importance(termo_models_1))
 ```
 
-## Усредним "важность"за все прогоны + FULL
-
+# Average "importance" for all runs
 ```{r}
 apply(termo_models_1_var_import, c(1,2), mean)
 ```
 
-## Кривые отлкика для каждой модели
-
+## Response curves for each model
 ```{r}
 termo_glm <- BIOMOD_LoadModels(termo_models_1, models='GLM')
 termo_gbm <- BIOMOD_LoadModels(termo_models_1, models='GBM')
@@ -187,19 +178,16 @@ gam_eval_strip <-
   # legend = FALSE,
   data_species = get_formal_data(termo_models_1,'resp.var')
 )
-
-##по X - значение переменной, по Y -  отклик 
 ```
 
-## Ансамблевые модели (т.е. одновременное обучение моделей)
-
+# Ensemble models
 ```{r}
 termo_ensemble_models_1 <- 
   BIOMOD_EnsembleModeling(
     modeling.output = termo_models_1,
     em.by = 'all',
     eval.metric = 'TSS',
-    eval.metric.quality.threshold = 0.6, #выбираем модели, у которых такие метрики
+    eval.metric.quality.threshold = 0.6, 
     models.eval.meth = c('TSS','ROC'),
     prob.mean = FALSE,
     prob.cv = TRUE, 
@@ -210,20 +198,18 @@ termo_ensemble_models_1 <-
 
 ```
 
-## Оценка ансамблевых моделей
-
+## Ensemble models score
 ```{r}
 (termo_ensemble_models_1_scores <- get_evaluations(termo_ensemble_models_1))
 #cv - coefficient variation
 #PA - pseudo absences
-#ca - coomite(?) average
+#ca - comute average
 #wm - Weighted mean
 ```
 
-## Делаем проекции моделей
+# Do models projections
 
 ## current projections
-
 ```{r}
 termo_models_1_proj_current <- 
   BIOMOD_Projection(
@@ -286,8 +272,8 @@ plot(termo_ensemble_models_1_proj_2040
      )
 ```
 
-##Считаем SRC (species range change)
-##подгрузка проекций
+## Calculating SRC (species range change)
+## load models
 ```{r}
 term_bin_proj_current <- 
   stack( 
@@ -316,7 +302,7 @@ SRC_current_2040$Compt.By.Models
 ```{r}
 SRC_current_2040$Diff.By.Pixel
 ```
-
+## Colorkey for SRC
 ```{r}
 names(SRC_current_2040$Diff.By.Pixel) <- c("ca cur-2040", "wm cur-2040")
 
@@ -332,6 +318,7 @@ myColorkey <-
   )
 
 ```
+## Coloring SRC map
 
 ```{r}
 # tiff(filename = 'output.tiff')
@@ -348,7 +335,7 @@ rasterVis::levelplot(
 ```{r}
 SRC_current_2040
 ```
-
+## Saving results as TIFF 
 ```{r}
 future_2040 <- brick(SRC_current_2040$Diff.By.Pixel)
 for (i in 1:nlayers(future_2040))
@@ -357,4 +344,3 @@ proj_2040 <-(future_2040[[i]])
 writeRaster(proj_2040, glue::glue("/Users/v.baranov/Desktop/Диплом/code/R/results/25_05_22/proj_2040{i}.tif"), sep="")
 }
 ```
-

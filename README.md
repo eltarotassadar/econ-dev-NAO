@@ -7,7 +7,13 @@ At present, the development of the economy of the Bolshezemelskaya tundra (BZT) 
    In this regard, the study of the modern dynamics of thermokarst processes, their speed and direction of development seems to be one of the most significant tasks, the solution of which can ensure the adoption of optimal and economically sound engineering solutions today when designing economic facilities and oil and gas infrastructure in the northern regions of the country.
   
    Given the significant areas occupied by permafrost and the potential danger of various kinds of problems of a permafrost-environmental nature arising within them, the involvement of spatial analysis methods for their study, including those based on the use of GIS technologies and remote sensing materials (ERS), may turn out to be very efficient.
-  
+   
+## Repository description
+
+1) code: here are the main script in which simulations are carried out with various machine learning algorithms and the results are visualized; and script in which raw data from QGIS is prepared for modeling
+2) data: rasters with [biclimatic variables](https://www.worldclim.org/data/bioclim.html), including current state data and data projected for 2040; points w/geodata, prepared in QGIS
+3) images: visualized results 
+
   
 ## Main literature
 

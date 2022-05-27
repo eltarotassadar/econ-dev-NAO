@@ -4,9 +4,9 @@ At present, the development of the economy of the Bolshezemelskaya tundra (BZT) 
 
   In this regard, the study of the modern dynamics of thermokarst processes, their speed and direction of development seems to be one of the most significant tasks, the solution of which can ensure the adoption of optimal and economically sound engineering solutions today when designing economic facilities and oil and gas infrastructure in the northern regions of the country.
   
-  Given the significant areas occupied by permafrost and the potential danger of various kinds of problems of a permafrost-environmental nature arising within them, the involvement of spatial analysis methods for their study, including those based on the use of GIS technologies and remote sensing materials (ERS), may turn out to be very efficient.
-  
   ![alt text](https://github.com/eltarotassadar/econ-dev-NAO/blob/main/images/SRC.png?raw=true)
+  
+   Given the significant areas occupied by permafrost and the potential danger of various kinds of problems of a permafrost-environmental nature arising within them, the involvement of spatial analysis methods for their study, including those based on the use of GIS technologies and remote sensing materials (ERS), may turn out to be very efficient.
   
   
 ## Main literature

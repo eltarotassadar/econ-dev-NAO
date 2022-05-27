@@ -6,5 +6,5 @@ At present, the development of the economy of the Bolshezemelskaya tundra (BZT) 
   
   Given the significant areas occupied by permafrost and the potential danger of various kinds of problems of a permafrost-environmental nature arising within them, the involvement of spatial analysis methods for their study, including those based on the use of GIS technologies and remote sensing materials (ERS), may turn out to be very efficient.
   
-  ![alt text]([https://github.com/eltarotassadar/econ-dev-NAO/blob/main/images/SRC.png])
+  ![alt text](https://github.com/eltarotassadar/econ-dev-NAO/blob/main/images/SRC.png?raw=true)
 

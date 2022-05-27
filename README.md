@@ -1,4 +1,7 @@
 # Modeling of natural processes in the zones of economic development of the Nenets Autonomous Okrug (Diploma)
+<p align="center">
+    <a href="https://github.com/rstudio/rstudio"><img src="https://img.shields.io/github/workflow/status/growthbook/growthbook/CI" alt="Build Status" height="22"/></a>
+</p>
 
 At present, the development of the economy of the Bolshezemelskaya tundra (BZT) is primarily associated with the development of raw materials. However, its industrial development, as well as the entire permafrost zone, which occupies 65% of the territory of Russia, creates a number of geoecological problems, which are often exacerbated by the peculiarities of the northern nature.
   

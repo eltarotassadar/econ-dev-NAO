@@ -69,7 +69,7 @@ termo_models_1 <-
     data = termokarst_data,
     models = c("GLM", "GBM", "RF", "GAM"),
     models.options = termo_opt,
-    NbRunEval = 2, #два прогона
+    NbRunEval = 2, #2 runs (+FULL)
     DataSplit = 80,
     VarImport = 3,
     modeling.id = "first_try"

@@ -10,7 +10,7 @@ At present, the development of the economy of the Bolshezemelskaya tundra (BZT) 
    
 ```mermaid
   graph TD;
-      A[Raw opensource data]-->B{QGIS - first calculations, \ncentroids and etc.};
+      A[Raw opensource data]-->B{QGIS - first calculations, centroids and etc.};
       B-->C[Jupyter Notebook - working with table data];
       C-->D[R Studio - BIOMOD2 modelling];
 ```

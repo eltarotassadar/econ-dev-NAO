@@ -8,6 +8,13 @@ At present, the development of the economy of the Bolshezemelskaya tundra (BZT) 
   
    Given the significant areas occupied by permafrost and the potential danger of various kinds of problems of a permafrost-environmental nature arising within them, the involvement of spatial analysis methods for their study, including those based on the use of **GIS technologies** and machine **learning algorithms**, may turn out to be very efficient.
    
+```mermaid
+  graph TD;
+      A[Raw open source data]-->B{QGIS (first calculations, centroids and etc.)};
+      B-->C[Jupyter Notebook (working with table data];
+      C-->D[R Studio (BIOMOD2 modelling)];
+```
+   
 ## Repository description
 
 1) **code**: here are the main script ([main.rmd](https://github.com/eltarotassadar/econ-dev-NAO/blob/main/code/main.rmd)) in which simulations are carried out with various machine learning algorithms and the results are visualized; script ([thermokarst_editing.ipynb](https://github.com/eltarotassadar/econ-dev-NAO/blob/main/code/thermokarst_editing.ipynb)) in which raw data from QGIS is prepared for modeling
